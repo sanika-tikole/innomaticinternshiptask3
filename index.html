@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Task Solutions</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>JavaScript Task Solutions</h1>
+  </header>
+  
+  <main>
+    <section id="atm">
+      <h2>ATM Withdrawal System</h2>
+      <p id="atmOutput"></p>
+    </section>
+    
+    <section id="shopping">
+      <h2>Online Shopping Discount and SFree Shipping</h2>
+      <p id="shoppingOutput"></p>
+    </section>
+    
+    <section id="grading">
+      <h2>Student Grading System with Extra Credit</h2>
+      <p id="gradingOutput"></p>
+    </section>
+    
+    <section id="traffic">
+      <h2>Smart Traffic Light System</h2>
+      <p id="trafficOutput"></p>
+    </section>
+    
+    <section id="ticket">
+      <h2>Movie Ticket Pricing with Time and Age Discount</h2>
+      <p id="ticketOutput"></p>
+    </section>
+    
+    <section id="job">
+      <h2>Job Application Filter</h2>
+      <p id="jobOutput"></p>
+    </section>
+    
+    <section id="coupon">
+      <h2>E-commerce Coupon Redemption</h2>
+      <p id="couponOutput"></p>
+    </section>
+    
+    <section id="membership">
+      <h2>Fitness Membership Plan</h2>
+      <p id="membershipOutput"></p>
+    </section>
+    
+    <section id="electricity">
+      <h2>Electricity Bill Calculation with Peak Hours</h2>
+      <p id="electricityOutput"></p>
+    </section>
+    
+    <section id="flight">
+      <h2>Flight Ticket Booking System</h2>
+      <p id="flightOutput"></p>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 JavaScript Task Solutions</p>
+  </footer>
+
+  <script>
+    // 1. ATM Withdrawal System
+    function atmWithdrawal(balance, amount, pin, enteredPin) {
+      if (enteredPin !== pin) {
+        return "Incorrect PIN";
+      }
+      if (amount > balance) {
+        return "Insufficient Funds";
+      }
+      if (amount % 100 !== 0) {
+        return "Enter amount in multiples of 100";
+      }
+      return `Withdrawal successful: ${amount} withdrawn, remaining balance: ${balance - amount}`;
+    }
+    
+    // 2. Online Shopping Discount & Free Shipping
+    function calculateFinalAmount(orderAmount) {
+      let discount = 0;
+      if (orderAmount > 1000) {
+        discount = 0.20;
+      } else if (orderAmount >= 500) {
+        discount = 0.10;
+      }
+      let discountedAmount = orderAmount - (orderAmount * discount);
+      let shippingCost = orderAmount > 50 ? 0 : 10;
+      return discountedAmount + shippingCost;
+    }
+    
+    // 3. Student Grading System with Extra Credit
+    function calculateGrade(marks, attendance) {
+      if (attendance > 90) {
+        marks += 5;
+      }
+      if (marks >= 90) {
+        return "A";
+      } else if (marks >= 80) {
+        return "B";
+      } else if (marks >= 70) {
+        return "C";
+      } else if (marks >= 60) {
+        return "D";
+      } else {
+        return "F";
+      }
+    }
+    
+    // 4. Smart Traffic Light System
+    function trafficLightControl(density) {
+      if (density === "Heavy Traffic") {
+        return 60;
+      } else if (density === "Moderate Traffic") {
+        return 40;
+      } else if (density === "Light Traffic") {
+        return 20;
+      } else {
+        return "Invalid traffic density";
+      }
+    }
+    
+    // 5. Movie Ticket Pricing with Time and Age Discount
+    function calculateTicketPrice(age, showTime) {
+      const basePrice = 12;
+      let discount = 0;
+      if (age < 12) {
+        discount = 0.40;
+      } else if (age > 60) {
+        discount = 0.30;
+      } else if (showTime < 17) {
+        discount = 0.20;
+      }
+      return basePrice * (1 - discount);
+    }
+    
+    // 6. Job Application Filter
+    function isEligibleForJob(age, experience, qualification) {
+      if (age < 21 || age > 55) {
+        return false;
+      }
+      if (experience < 2) {
+        return false;
+      }
+      if (qualification !== "Bachelor's Degree") {
+        return false;
+      }
+      return true;
+    }
+    
+    // 7. E-commerce Coupon Redemption
+    function applyCoupon(orderAmount, couponCode) {
+      const defaultShipping = 20;
+      if (couponCode === "DISCOUNT10" && orderAmount > 500) {
+        return orderAmount * 0.9 + defaultShipping;
+      } else if (couponCode === "FREESHIP" && orderAmount > 200) {
+        return orderAmount;
+      }
+      return orderAmount + defaultShipping;
+    }
+    
+    // 8. Fitness Membership Plan
+    function choosePlan(planType, wantsTrainer, wantsDietPlan) {
+      if (wantsTrainer && wantsDietPlan) {
+        return "VIP ($80/month)";
+      } else if (wantsTrainer) {
+        return "Premium ($50/month)";
+      } else {
+        return "Basic ($20/month)";
+      }
+    }
+    
+    // 9. Electricity Bill Calculation with Peak Hours
+    function calculateElectricityBill(units, timeOfDay) {
+      let rate;
+      if (units < 100) {
+        rate = 5;
+      } else if (units <= 300) {
+        rate = 4;
+      } else {
+        rate = 3;
+      }
+      if (timeOfDay < 8 || timeOfDay >= 20) {
+        rate *= 1.10;
+      }
+      return units * rate;
+    }
+    
+    // 10. Flight Ticket Booking System
+    function calculateFlightFare(classType, luggageWeight, isStudent, isSenior) {
+      let fare = 300;
+      if (classType === "Business") {
+        fare += 200;
+      } else if (classType === "First") {
+        fare += 500;
+      }
+      let extraCharge = 0;
+      if (luggageWeight > 20) {
+        extraCharge = Math.ceil((luggageWeight - 20) / 10) * 50;
+      }
+      let totalFare = fare + extraCharge;
+      if (isStudent) {
+        totalFare *= 0.85;
+      } else if (isSenior) {
+        totalFare *= 0.90;
+      }
+      return totalFare;
+    }
+    
+    // Display example outputs
+    document.getElementById('atmOutput').innerText = atmWithdrawal(1000, 300, 1234, 1234);
+    document.getElementById('shoppingOutput').innerText = calculateFinalAmount(1200);
+    document.getElementById('gradingOutput').innerText = calculateGrade(85, 95);
+    document.getElementById('trafficOutput').innerText = trafficLightControl("Moderate Traffic");
+    document.getElementById('ticketOutput').innerText = calculateTicketPrice(65, 16);
+    document.getElementById('jobOutput').innerText = isEligibleForJob(30, 3, "Bachelor's Degree");
+    document.getElementById('couponOutput').innerText = applyCoupon(600, "DISCOUNT10");
+    document.getElementById('membershipOutput').innerText = choosePlan("Basic", true, false);
+    document.getElementById('electricityOutput').innerText = calculateElectricityBill(350, 21);
+    document.getElementById('flightOutput').innerText = calculateFlightFare("Business", 35, false, true);
+  </script>
+</body>
+</html>
